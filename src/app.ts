@@ -1,4 +1,4 @@
-import express, { Application, json, Request, Response } from "express";
+import express, { Application, json } from "express";
 import { deleteProduct, getAllProducts, getProductByID, postProduct, updateProduct } from "./logic";
 import { idValidation, nameValidation, objectKeyValidation } from "./middlewares";
 
