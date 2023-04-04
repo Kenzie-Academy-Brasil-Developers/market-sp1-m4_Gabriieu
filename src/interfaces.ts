@@ -4,11 +4,10 @@ export interface iProduct{
     price: number
     weight: number
     section: 'food' | 'cleaning'
+    calories: string
     expiration_date: Date
 }
 
-export interface iFoodProduct extends iProduct{
-    calories: number
-}
 
-export interface iCleaningProduct extends iProduct{}
+
+export type iCleaningProduct = Omit<iProduct, 'calories'>
