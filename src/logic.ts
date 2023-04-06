@@ -14,15 +14,17 @@ export const postProduct = (request: Request, response: Response): Response => {
   if (market.length > 0) {
     id = market[market.length - 1].id;
   }
-
+  const returnList: Array<iProduct> = []
   productList.map((product) => {
     id += 1;
     total += product.price;
     product = { ...product, id: id, expiration_date: new Date(dueDate) };
     market.push(product);
+    returnList.push(product)
   });
+  
 
-  return response.status(201).json({total: total, marketProducts: productList});
+  return response.status(201).json({total: total, marketProducts: returnList});
 };
 
 export const getAllProducts = (
