@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response, request } from "express";
 import { market } from "./db";
 import { iProduct } from "./interfaces";
 
@@ -39,9 +39,28 @@ export const objectKeyValidation = (request: Request, response: Response, next: 
 
     unallowedKey.forEach(key => {
         if(key in newData){
-            return response.status(203).json({error: 'Non-authorized information'})
+            return response.status(200).json(
+                {
+                section: 'Não é possível alterar a seção',
+                id: 0,
+                expirationDate: 'Não é possível alterar a data de expiração'
+                }
+                
+            )
         }
     })
     
+    return next()
+}
+
+export const patchNameValidation = (request: Request, response: Response, next: NextFunction) => {
+    const name = request.body.name
+
+    market.forEach(product => {
+        if(product.name === name){
+            return response.status(409).json({error: `${name} is already registered`})
+        }
+    })
+
     return next()
 }

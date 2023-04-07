@@ -18,7 +18,7 @@ export const postProduct = (request: Request, response: Response): Response => {
   productList.map((product) => {
     id += 1;
     total += product.price;
-    product = { ...product, id: id, expiration_date: new Date(dueDate) };
+    product = { ...product, id: id, expirationDate: new Date(dueDate) };
     market.push(product);
     returnList.push(product)
   });

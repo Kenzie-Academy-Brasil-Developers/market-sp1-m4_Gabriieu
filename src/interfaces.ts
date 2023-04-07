@@ -5,7 +5,7 @@ export interface iProduct{
     weight: number
     section: 'food' | 'cleaning'
     calories: string
-    expiration_date: Date
+    expirationDate: Date
 }
 
 
